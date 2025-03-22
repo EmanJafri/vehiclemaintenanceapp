@@ -1,65 +1,69 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-type ServiceItemProps = {
+interface ServiceItemProps {
   name: string;
   onEdit: () => void;
   onDelete: () => void;
-};
+}
 
-const ServiceItem: React.FC<ServiceItemProps> = ({ name, onEdit, onDelete }) => (
-  <View style={styles.item}>
-    <Text style={styles.itemText}>{name}</Text>
+export default function ServiceItem({ name, onEdit, onDelete }: ServiceItemProps) {
+  return (
+    <View style={styles.serviceItem}>
+      <Text style={styles.text}>{name}</Text>
 
-    <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.editButton} onPress={onEdit}>
-        <Text style={styles.buttonText}>EDIT</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.editButton} onPress={onEdit}>
+          <Text style={styles.buttonText}>Edit</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
-        <Text style={styles.buttonText}>DELETE</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.deleteButton} onPress={onDelete}>
+          <Text style={styles.buttonText}>Delete</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
+}
 
 const styles = StyleSheet.create({
-  item: {
-    backgroundColor: '#FFF',
+  serviceItem: {
     padding: 15,
+    marginVertical: 8,
+    borderWidth: 2,
+    borderColor: '#8B4513',
     borderRadius: 10,
-    marginBottom: 10,
+    backgroundColor: '#FFF8DC',
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#8B4513',
   },
-  itemText: {
+  text: {
     fontSize: 16,
-    fontWeight: 'bold',
     color: '#5C4033',
   },
   buttonContainer: {
     flexDirection: 'row',
   },
   editButton: {
-    backgroundColor: '#D2691E',
-    padding: 10,
+    backgroundColor: '#A0522D',
+    paddingVertical: 5,
+    paddingHorizontal: 12,
     borderRadius: 5,
     marginRight: 5,
   },
   deleteButton: {
-    backgroundColor: '#8B0000',
-    padding: 10,
+    backgroundColor: '#8B4513',
+    paddingVertical: 5,
+    paddingHorizontal: 12,
     borderRadius: 5,
   },
   buttonText: {
     color: '#FFF',
-    textAlign: 'center',
     fontSize: 14,
     fontWeight: 'bold',
   },
 });
-
-export default ServiceItem;
